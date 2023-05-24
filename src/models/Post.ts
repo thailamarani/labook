@@ -1,10 +1,19 @@
-export class User {
+export class Post {
     constructor(
         private id: string,
         private name: string,
         private email: string,
         private created_at: string
     ) { }
+
+    public getDBModel(){
+        return{
+            id: this.id,
+            name: this.name,
+            email: this.email,
+            created_at: this.created_at
+        }
+    }
 
     public getId(): string {
         return this.id
@@ -33,4 +42,11 @@ export class User {
     public setCreatedAt(newCreatedAt: string): void {
         this.created_at = newCreatedAt
     }
+}
+
+export interface PostDBResponse{
+    id: string,
+    name: string,
+    email: string,
+    created_at: string
 }
