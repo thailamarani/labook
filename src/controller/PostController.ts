@@ -1,14 +1,13 @@
 import { PostBusiness } from "../business/PostBusiness";
 import { Request, Response } from "express";
-import { EditPostSchema } from "../dtos/editPost.dto";
-import { PostInputDTO } from "../dtos/getPost.dto";
-import { CreatePostSchema } from "../dtos/createPost.dto";
-import { DeletePostSchema } from "../dtos/deletePost.dto";
+import { EditPostSchema } from "../dtos/post/editPost.dto";
+import { PostInputDTO } from "../dtos/post/getPost.dto";
+import { CreatePostSchema } from "../dtos/post/createPost.dto";
+import { DeletePostSchema } from "../dtos/post/deletePost.dto";
 
 export class PostController {
     constructor(
         private postBusiness: PostBusiness
-
     ) { }
 
     public getPosts = async (req: Request, res: Response) => {
@@ -16,7 +15,6 @@ export class PostController {
             const input: PostInputDTO = {
                 q: req.query.q as string
             }
-
             const result = await this.postBusiness.getPosts(input)
             res.status(200).send({result})
 

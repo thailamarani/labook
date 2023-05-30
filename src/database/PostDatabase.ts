@@ -1,7 +1,7 @@
 import { BaseDatabase } from "./BaseDatabase";
 import { Post, PostDBResponse } from "../models/Post"
 
-export class PostDatabase extends BaseDatabase{
+export class PostDatabase extends BaseDatabase {
     static POSTS_TABLE = "posts"
 
     public getPostByName = async (q: string): Promise<PostDBResponse[]> => {

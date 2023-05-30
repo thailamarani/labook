@@ -1,10 +1,9 @@
 import { PostDatabase } from "../database/PostDatabase";
-import { PostInputDTO } from "../dtos/getPost.dto";
+import { PostInputDTO } from "../dtos/post/getPost.dto";
 import { Post, PostDBResponse } from "../models/Post";
-import { CreatePostInputDTO } from "../dtos/createPost.dto";
-import { EditPostInputDTO } from "../dtos/editPost.dto";
-import { DeletePostInputDTO } from "../dtos/deletePost.dto";
-
+import { CreatePostInputDTO } from "../dtos/post/createPost.dto";
+import { EditPostInputDTO } from "../dtos/post/editPost.dto";
+import { DeletePostInputDTO } from "../dtos/post/deletePost.dto";
 
 export class PostBusiness {
     constructor(
