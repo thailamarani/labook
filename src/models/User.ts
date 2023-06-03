@@ -1,38 +1,49 @@
-export interface TokenPayload {
-    id: string,
-    creator_id: string,
-    content: string,
-    likes: string,
-    dislikes: string,
-    created_at: string,
-    updated_at: string
+export enum USER_ROLES {
+    NORMAL = "NORMAL",
+    ADMIN = "ADMIN"
 }
 
-export interface SignupOutputDTO {
-    message: string,
-    token: string
+export interface TokenPayload {
+    id: string,
+    name: string,
+    role: USER_ROLES
+}
+
+export interface UserDB {
+    id: string,
+    name: string,
+    email: string,
+    password: string,
+    role: USER_ROLES,
+    created_at: string
+}
+
+export interface UserModel {
+    id: string,
+    name: string,
+    email: string,
+    role: USER_ROLES,
+    createdAt: string
 }
 
 export class User {
     constructor(
         private id: string,
-        private creator_id: string,
-        private content: string,
-        private likes: string,
-        private dislikes: string,
-        private created_at: string,
-        private updated_at: string
+        private name: string,
+        private email: string,
+        private password: string,
+        private role: USER_ROLES,
+        private createdAt: string
     ) { }
 
-    public getDBModel(){
-        return{
+    public getDBModel() {
+        return {
             id: this.id,
-            creator_id: this.creator_id,
-            content: this.content,
-            likes: this.likes,
-            dislides: this.dislikes,
-            created_at: this.created_at,
-            updated_at: this.updated_at
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            role: this.role,
+            createdAt: this.createdAt
         }
     }
 
@@ -43,55 +54,59 @@ export class User {
         this.id = newId
     }
 
-    public getCreatorId(): string {
-        return this.creator_id
+    public getName(): string {
+        return this.name
     }
-    public setCreatorId(newCreatorId: string): void {
-        this.creator_id = newCreatorId
-    }
-
-    public getContent(): string {
-        return this.content
-    }
-    public setContent(newContent: string): void {
-        this.content = newContent
+    public setName(newName: string): void {
+        this.name = newName
     }
 
-    public getLikes(): string {
-        return this.likes
+    public getEmail(): string {
+        return this.email
     }
-    public setLikes(newLikes: string): void {
-        this.likes = newLikes
+    public setEmail(newEmail: string): void {
+        this.email = newEmail
     }
 
-    public getDislikes(): string {
-        return this.dislikes
+    public getPassword(): string {
+        return this.password
     }
-    public setDislikes(newDislikes: string): void {
-        this.dislikes = newDislikes
+    public setPassword(newPassword: string): void {
+        this.password = newPassword
+    }
+
+    public getRole(): USER_ROLES {
+        return this.role
+    }
+    public setRole(newRole: USER_ROLES): void {
+        this.role = newRole
     }
 
     public getCreatedAt(): string {
-        return this.created_at
+        return this.createdAt
     }
     public setCreatedAt(newCreatedAt: string): void {
-        this.created_at = newCreatedAt
+        this.createdAt = newCreatedAt
     }
 
-    public getUpdatedAt(): string {
-        return this.updated_at
+    public toDBModelUser(): UserDB {
+        return {
+            id: this.id,
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            role: this.role,
+            created_at: this.createdAt
+        }
     }
-    public setUpdatedAt(newUpdatedAt: string): void {
-        this.updated_at = newUpdatedAt
-    }
-}
 
-export interface UserDBResponse{
-    id: string,
-    creator_id: string,
-    content: string,
-    likes: string,
-    dislikes: string,
-    created_at: string,
-    updated_at: string
+    public toBusinessModelUser(): UserModel {
+        return {
+            id: this.id,
+            name: this.name,
+            email: this.email,
+            role: this.role,
+            createdAt: this.createdAt
+        }
+    }
 }
