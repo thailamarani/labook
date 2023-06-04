@@ -4,7 +4,6 @@ import { DeletePostInputDTO, DeletePostOutputDTO } from "../dtos/post/deletePost
 import { EditPostInputDTO, EditPostOutputDTO } from "../dtos/post/editPost.dto";
 import { GetPostInputDTO, GetPostOutputDTO } from "../dtos/post/getPost.dto";
 import { LikeOrDislikePostInputDTO, LikeOrDislikePostOutputDTO } from "../dtos/post/likeOrDislikePost.dto";
-import { BadRequestError } from "../erros/BadRequestError";
 import { ForbiddenError } from "../erros/ForbiddenError";
 import { NotFoundError } from "../erros/NotFoundError";
 import { UnauthorizedError } from "../erros/UnauthorizedError";
@@ -83,7 +82,7 @@ export class PostBusiness {
     }
 
     public editPost = async (input: EditPostInputDTO): Promise<EditPostOutputDTO> => {
-        const { name, token, idToEdit } = input
+        const { content, token, idToEdit } = input
 
         const payload = this.tokenManager.getPayload(token)
 
@@ -112,10 +111,9 @@ export class PostBusiness {
             payload.name
         )
 
-        post.setCreatorName(name)
+        post.setCreatorName(content)
 
         const updatedPostDB = post.toDBModelPost()
-
         await this.postDatabase.updatePost(updatedPostDB)
 
         const output: EditPostOutputDTO = undefined

@@ -106,7 +106,7 @@ export class Post {
     public addDislike = (): void => {
         this.dislikes++
     }
-    
+
     public removeDislike = (): void => {
         this.dislikes--
     }

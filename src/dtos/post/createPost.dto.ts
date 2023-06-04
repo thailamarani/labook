@@ -1,6 +1,6 @@
 import z from "zod";
 
-export interface CreatePostInputDTO{
+export interface CreatePostInputDTO {
     content: string,
     token: string
 }

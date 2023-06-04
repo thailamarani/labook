@@ -5,7 +5,6 @@ import { BaseError } from "../erros/BaseError";
 import { SignupSchema } from "../dtos/user/signup.dto";
 import { LoginSchema } from "../dtos/user/login.dto";
 
-
 export class UserController {
     constructor(
         private userBusiness: UserBusiness

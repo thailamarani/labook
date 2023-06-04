@@ -23,7 +23,7 @@ export class PostController {
             const output = await this.postBusiness.createPosts(input)
 
             res.status(201).send(output)
-        
+
         } catch (error) {
             console.log(error)
             if (error instanceof ZodError) {
@@ -31,11 +31,12 @@ export class PostController {
             } else if (error instanceof BaseError) {
                 res.status(error.statusCode).send(error.message)
             } else {
-                res.status(500).send("Erro inesperado")}
+                res.status(500).send("Erro inesperado")
+            }
         }
-    
+
     }
-    
+
     public getPosts = async (req: Request, res: Response) => {
         try {
             const input = GetPostSchema.parse({
@@ -45,7 +46,7 @@ export class PostController {
             const output = await this.postBusiness.getPost(input)
 
             res.status(200).send(output)
-        
+
         } catch (error) {
             console.log(error)
             if (error instanceof ZodError) {
@@ -53,7 +54,8 @@ export class PostController {
             } else if (error instanceof BaseError) {
                 res.status(error.statusCode).send(error.message)
             } else {
-                res.status(500).send("Erro inesperado")}
+                res.status(500).send("Erro inesperado")
+            }
         }
     }
 
@@ -64,7 +66,7 @@ export class PostController {
                 content: req.body.content,
                 idToEdit: req.params.id
             })
-            
+
             const output = await this.postBusiness.editPost(input)
 
             res.status(200).send(output)
@@ -76,7 +78,8 @@ export class PostController {
             } else if (error instanceof BaseError) {
                 res.status(error.statusCode).send(error.message)
             } else {
-                res.status(500).send("Erro inesperado")}
+                res.status(500).send("Erro inesperado")
+            }
         }
     }
 
@@ -90,7 +93,7 @@ export class PostController {
             const output = await this.postBusiness.deletePost(input)
 
             res.status(200).send(output)
-        
+
         } catch (error) {
             console.log(error)
             if (error instanceof ZodError) {
@@ -98,7 +101,8 @@ export class PostController {
             } else if (error instanceof BaseError) {
                 res.status(error.statusCode).send(error.message)
             } else {
-                res.status(500).send("Erro inesperado")}
+                res.status(500).send("Erro inesperado")
+            }
         }
     }
 
@@ -113,7 +117,7 @@ export class PostController {
             const output = await this.postBusiness.likeOrDislikePost(input)
 
             res.status(200).send(output)
-        
+
         } catch (error) {
             console.log(error)
             if (error instanceof ZodError) {
@@ -121,7 +125,8 @@ export class PostController {
             } else if (error instanceof BaseError) {
                 res.status(error.statusCode).send(error.message)
             } else {
-                res.status(500).send("Erro inesperado")}
+                res.status(500).send("Erro inesperado")
+            }
         }
     }
 
