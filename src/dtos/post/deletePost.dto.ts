@@ -1,11 +1,13 @@
 import z from "zod";
 
 export interface DeletePostInputDTO {
-    id: string
+    token: string,
+    idToDelete: string
 }
 
+export type DeletePostOutputDTO = undefined
+
 export const DeletePostSchema = z.object({
-    id: z.string({
-        invalid_type_error: "id deve ser string"})
-    .min(4, "id precisa ter no mínimo 4 caracteres")
-}).transform(data => data as DeletePostInputDTO)
+    token: z.string().min(1),
+    idToDelete: z.string().min(1)
+})

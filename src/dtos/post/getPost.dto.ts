@@ -1,17 +1,12 @@
-export interface PostInputDTO {
-    q: string | undefined
+import z from "zod";
+import { PostModel } from "../../models/Post";
+
+export interface GetPostInputDTO {
+    token: string
 }
 
-// export interface PostDB {
-//     id: string,
-//     name: string,
-//     email: string,
-//     created_at: string
-// };
+export type GetPostOutputDTO = PostModel[]
 
-// export interface PostDBPost {
-//     id: string,
-//     name: string,
-//     email: string,
-//     created_at: string
-// };
+export const GetPostSchema = z.object({
+    token: z.string().min(1)
+}).transform(data => data as GetPostInputDTO)

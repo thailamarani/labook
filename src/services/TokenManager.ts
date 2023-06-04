@@ -24,8 +24,7 @@ export class TokenManager {
             )
 
             return payload as TokenPayload
-
-		} catch (error) {
+        } catch (error) {
             return null
         }
     }

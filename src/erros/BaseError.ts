@@ -1,8 +1,8 @@
-export class BaseError extends Error{
+export abstract class BaseError extends Error {
     constructor(
-        private statusCode: number,
+        public statusCode: number,
         message: string
-    ){
+    ) {
         super(message)
     }
 }

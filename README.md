@@ -1,47 +1,145 @@
-PROJETO LABOOK
+#LABOOK - BACKEND#
 
-O Labook é uma rede social com o objetivo de promover a conexão e interação entre pessoas. Quem se cadastrar no aplicativo poderá criar e curtir publicações.
-Agora que temos as bases de criação de APIs e banco de dados, o próximo nível é a implementação de segurança e códigos mais escaláveis. Veremos durante o prazo de entrega desse projeto inúmeros conceitos e formas de desenvolvimento seguindo padrões de design e arquitetura, e seu desafio será unir as funcionalidades com as boas práticas de código.
+Esse é o backend do projeto Labook, uma rede social para compartilhamento de posts.
 
-CONTEÚDOS ABORDADOS:
-
-NodeJS
+---Tecnologias utilizadas---
+Node.js
 Typescript
 Express
-SQL e SQLite
 Knex
-POO
-Arquitetura em camadas
-Geração de UUID
-Geração de hashes
-Autenticação e autorização
-Roteamento
+SQL e SQLite
+JWT
+Bcrypt
+UUID
+Dotenv
 Postman
-
-LISTA DE REQUISITOS:
-
-Documentação Postman de todos os endpoints (obrigatória para correção)
-
-Endpoints
-
-signup
-login
-get posts
-create post
-edit post
-delete post
-like / dislike post
-
+Roteamento
 Autenticação e autorização
-
-identificação UUID
-senhas hasheadas com Bcrypt
-tokens JWT
-
-Código
-
-POO
+Geração de hashes
 Arquitetura em camadas
-Roteadores no Express
 
-README.md
+---Funcionalidades---
+
+*O backend do Labook possui os seguintes endpoints:*
+
+===Criar usuário===
+Método HTTP: POST
+Path: /user/signup
+
+Input:
+{
+    "name": "Alice",
+    "email": "alice@example.com",
+    "password": "123456"
+}
+
+Output de sucesso:
+
+{
+    "token": "<token de autenticação>"
+}
+
+===Login===
+Realiza o login de um usuário na plataforma.
+Método HTTP: POST
+Path: /user/login
+
+Input:
+{
+    "email": "alice@example.com",
+    "password": "123456"
+}
+Output de sucesso:
+
+{
+    "token": "<token de autenticação>"
+}
+
+===Criar post===
+Cria um novo post na plataforma.
+Método HTTP: POST
+Path: /post/create
+
+Input:
+{
+    "photo": "https://www.example.com/photo.jpg",
+    "description": "Lorem ipsum dolor sit amet."
+}
+
+Output de sucesso:
+{
+    "message": "Post criado com sucesso!"
+}
+
+===Editar post===
+Edita um post existente na plataforma.
+Método HTTP: PUT
+Path: /post/edit/:postId
+
+Input:
+{
+    "photo": "https://www.example.com/new-photo.jpg",
+    "description": "Dolor sit amet, consectetur adipiscing elit."
+}
+
+Output de sucesso:
+{
+    "message": "Post editado com sucesso!"
+}
+
+===Deletar post===
+Deleta um post existente na plataforma.
+Método HTTP: DELETE
+Path: /post/delete/:postId
+Output de sucesso:
+
+{
+    "message": "Post deletado com sucesso!"
+}
+
+===Dar like em post===
+Adiciona um like em um post existente na plataforma.
+Método HTTP: PUT
+Path: /post/like/:postId
+
+Output de sucesso:
+{
+    "message": "Like adicionado com sucesso!"
+}
+
+===Dar dislike em post===
+Adiciona um dislike em um post existente na plataforma.
+Método HTTP: PUT
+Path: /post/dislike/:postId
+
+Output de sucesso:
+{
+    "message": "Dislike adicionado com sucesso!"
+}
+
+**Classes e orientação a objetos**
+O código desse projeto foi desenvolvido com a utilização de classes e orientação a objetos, visando uma melhor organização e escalabilidade. As classes principais são:
+
+*User*
+Representa um usuário na plataforma.
+
+Métodos:
+signup: cria um novo usuário na plataforma.
+login: realiza o login de um usuário na plataforma.
+
+*Post*
+Representa um post na plataforma.
+
+Métodos:
+createPost: cria um novo post na plataforma.
+getPostById: retorna um post existente na plataforma pelo seu id.
+editPost: edita um post existente na plataforma.
+deletePost: deleta um post existente na plataforma.
+likePost: adiciona um like em um post existente na plataforma.
+dislikePost: adiciona um dislike em um post existente na plataforma.
+
+**Documentação:**
+https://documenter.getpostman.com/view/24823243/2s93sW9vXd
+
+**Autoria**
+Esse projeto foi desenvolvido por Thaila Marani Ghisini Costa como parte do bootcamp de desenvolvimento web full-stack da Labenu.

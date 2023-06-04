@@ -1,18 +1,21 @@
 import { BaseDatabase } from "./BaseDatabase";
-import { User, UserDBResponse} from "../models/User";
+import { UserDB } from "../models/User";
 
-export class UserDatabase extends BaseDatabase{
-    static USERS_TABLE = "users"
+export class UserDatabase extends BaseDatabase {
+    public static USERS_TABLE = "users"
 
-    public getUserByName = async (q: string): Promise<UserDBResponse[]> => {
-        const result: UserDBResponse[] = await BaseDatabase.connection(UserDatabase.USERS_TABLE)
-        .where({name: q})
-
-        return result
+    public insertUser = async (userDB: UserDB): Promise<void> => {
+        await BaseDatabase
+            .connection(UserDatabase.USERS_TABLE)
+            .insert(userDB)
     }
 
-    public getAllUsers = async () => {
-        const result = await BaseDatabase.connection(UserDatabase.USERS_TABLE)
-        return result
+    public findUserByEmail = async (email: string): Promise<UserDB | undefined> => {
+        const [userDB] = await BaseDatabase
+            .connection(UserDatabase.USERS_TABLE)
+            .select()
+            .where({ email: email })
+
+        return userDB as UserDB | undefined
     }
 }
